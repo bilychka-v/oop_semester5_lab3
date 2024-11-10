@@ -11,6 +11,7 @@
 		A507C8742CE039610017C04C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A507C8732CE039610017C04C /* ContentView.swift */; };
 		A507C8762CE039630017C04C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A507C8752CE039630017C04C /* Assets.xcassets */; };
 		A507C8792CE039630017C04C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A507C8782CE039630017C04C /* Preview Assets.xcassets */; };
+		A5B0A9792CE12F2100DC0E32 /* ActiveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B0A9782CE12F2100DC0E32 /* ActiveService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		A507C8732CE039610017C04C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A507C8752CE039630017C04C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A507C8782CE039630017C04C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A5B0A9782CE12F2100DC0E32 /* ActiveService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			children = (
 				A507C8712CE039610017C04C /* oop_semester5_lab3App.swift */,
 				A507C8732CE039610017C04C /* ContentView.swift */,
+				A5B0A9782CE12F2100DC0E32 /* ActiveService.swift */,
 				A507C8752CE039630017C04C /* Assets.xcassets */,
 				A507C8772CE039630017C04C /* Preview Content */,
 			);
@@ -139,6 +142,7 @@
 			files = (
 				A507C8742CE039610017C04C /* ContentView.swift in Sources */,
 				A507C8722CE039610017C04C /* oop_semester5_lab3App.swift in Sources */,
+				A5B0A9792CE12F2100DC0E32 /* ActiveService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,11 +276,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"oop_semester5_lab3/Preview Content\"";
+				DEVELOPMENT_TEAM = C6WJZHCYAN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "$(PRODUCT_NAME)";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = oop_semester5_lab3;
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "";
-				INFOPLIST_KEY_NSMotionUsageDescription = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				INFOPLIST_KEY_NSMotionUsageDescription = "Please allow motion permission so we can track steps and distance";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -287,7 +292,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "-.oop-semester5-lab3";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.viktoriyabilyk.-.oop-semester5-lab3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -303,11 +308,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"oop_semester5_lab3/Preview Content\"";
+				DEVELOPMENT_TEAM = C6WJZHCYAN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "$(PRODUCT_NAME)";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = oop_semester5_lab3;
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "";
-				INFOPLIST_KEY_NSMotionUsageDescription = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				INFOPLIST_KEY_NSMotionUsageDescription = "Please allow motion permission so we can track steps and distance";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -318,7 +324,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "-.oop-semester5-lab3";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.viktoriyabilyk.-.oop-semester5-lab3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

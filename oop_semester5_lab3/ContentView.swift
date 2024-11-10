@@ -1,66 +1,102 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var activeService = ActiveService()
+    
+    @State private var steps: Int = 0
+    @State private var distance: Double = 0.0
+    
     var body: some View {
-        ZStack{
+        ZStack {
             Color.black.ignoresSafeArea()
-            VStack(spacing:20){
-                Text("Menu")
+            
+            VStack(spacing: 20) {
+                Text("Health Tracker")
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                    .foregroundColor(Color.white)
-                HStack{
+                    .foregroundColor(.white)
+                
+                HStack {
                     Image(systemName: "flame.fill")
                         .foregroundColor(.pink)
-                    Text("Calories: ")
+                    Text("Calories:")
                         .font(.title2)
-                        .foregroundColor(Color.white)
+                        .foregroundColor(.white)
                     Spacer()
                     Text("0 kcal")
                         .font(.title2)
-                        .foregroundColor(Color.pink)
+                        .foregroundColor(.pink)
                 }
                 .padding()
                 .background(Color.gray.opacity(0.3))
                 .cornerRadius(10)
                 
-                ProgressCircle(progress: 0.5,color: .pink)
-                    .frame(width: 100, height: 100) // Adjust the size as needed
-                    .padding(.top, 10)
-                
-                HStack{
-                    Image(systemName: "figure.walk")
-                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-                    Text("Steps: ")
-                        .font(.title2)
-                        .foregroundColor(Color.white)
+                HStack {
+                    ProgressCircle(progress: 0.3, color: .pink)
+                        .frame(width: 150, height: 150)
+                        .padding(.top, 10)
                     Spacer()
-                    Text("0")
+                }
+                
+                HStack {
+                    Image(systemName: "figure.walk")
+                        .foregroundColor(.blue)
+                    Text("Steps:")
                         .font(.title2)
-                        .foregroundColor(Color.blue)
+                        .foregroundColor(.white)
+                    Spacer()
+                    Text("\(steps)")
+                        .font(.title2)
+                        .foregroundColor(.blue)
                 }
                 .padding()
                 .background(Color.gray.opacity(0.3))
                 .cornerRadius(10)
-                HStack{
+                
+                HStack {
                     Image(systemName: "location")
                         .foregroundColor(.green)
-                    Text("Distance: ")
+                    Text("Distance:")
                         .font(.title2)
-                        .foregroundColor(Color.white)
+                        .foregroundColor(.white)
                     Spacer()
-                    Text("0 km")
+                    Text(String(format: "%.2f km", distance))
                         .font(.title2)
-                        .foregroundColor(Color.green)
+                        .foregroundColor(.green)
                 }
                 .padding()
                 .background(Color.gray.opacity(0.3))
                 .cornerRadius(10)
+                
                 Spacer()
             }
             .padding(.top, 50)
             .padding(.horizontal, 20)
         }
+        .onAppear(perform: startMonitoring)
+        .onDisappear(perform: stopMonitoring)
+        .onReceive(activeService.$numberOfSteps) { steps in
+            self.steps = steps ?? 0
+            print("Steps updated: \(steps ?? 0)")
+        }
+        .onReceive(activeService.$distance) { distance in
+            self.distance = (distance ?? 0) / 1000.0
+            print("Distance updated: \(distance ?? 0)")
+        }
+    }
+    
+    private func startMonitoring() {
+        let authStatus = activeService.checkAuthStatus()
+        if authStatus {
+            print("Authorization granted. Starting monitoring...")
+            activeService.startMonitoring()
+        } else {
+            print("Authorization not granted. Please enable Motion & Fitness tracking in settings.")
+        }
+    }
+    
+    private func stopMonitoring() {
+        activeService.stopMonitoring()
     }
 }
 
@@ -71,13 +107,13 @@ struct ProgressCircle: View {
     var body: some View {
         ZStack {
             Circle()
-                .stroke(lineWidth: 20)
+                .stroke(lineWidth: 30)
                 .foregroundColor(color.opacity(0.3))
             
             Circle()
                 .trim(from: 0.0, to: CGFloat(progress))
-                .stroke(color, lineWidth: 20)
-                .rotationEffect(.degrees(-45))
+                .stroke(color, style: StrokeStyle(lineWidth: 30, lineCap: .round))
+                .rotationEffect(.degrees(-90))
             
             Text("\(Int(progress * 100))%")
                 .font(.caption)
