@@ -5,6 +5,9 @@ struct ContentView: View {
     
     @State private var steps: Int = 0
     @State private var distance: Double = 0.0
+    @State private var calories: Double = 0.0
+    
+    private let caloryGoal: Double = 500.0
     
     var body: some View {
         ZStack {
@@ -23,7 +26,7 @@ struct ContentView: View {
                         .font(.title2)
                         .foregroundColor(.white)
                     Spacer()
-                    Text("0 kcal")
+                    Text("\(Int(calories)) kcal")
                         .font(.title2)
                         .foregroundColor(.pink)
                 }
@@ -31,12 +34,9 @@ struct ContentView: View {
                 .background(Color.gray.opacity(0.3))
                 .cornerRadius(10)
                 
-                HStack {
-                    ProgressCircle(progress: 0.3, color: .pink)
-                        .frame(width: 150, height: 150)
-                        .padding(.top, 10)
-                    Spacer()
-                }
+                ProgressCircle(progress: calories / caloryGoal, color: .pink)
+                    .frame(width: 150, height: 150)
+                    .padding(.top, 10)
                 
                 HStack {
                     Image(systemName: "figure.walk")
@@ -81,17 +81,18 @@ struct ContentView: View {
         }
         .onReceive(activeService.$distance) { distance in
             self.distance = (distance ?? 0) / 1000.0
-            print("Distance updated: \(distance ?? 0)")
+            print("Distance updated: \(distance ?? 0.0)")
+        }
+        .onReceive(activeService.$burnedCalories) { calories in
+            self.calories = calories ?? 0.0
+            print("Calories updated: \(calories ?? 0.0)")
         }
     }
     
     private func startMonitoring() {
         let authStatus = activeService.checkAuthStatus()
         if authStatus {
-            print("Authorization granted. Starting monitoring...")
             activeService.startMonitoring()
-        } else {
-            print("Authorization not granted. Please enable Motion & Fitness tracking in settings.")
         }
     }
     
@@ -116,8 +117,11 @@ struct ProgressCircle: View {
                 .rotationEffect(.degrees(-90))
             
             Text("\(Int(progress * 100))%")
-                .font(.caption)
+                .font(.title2)
+                .fontWeight(.bold)
                 .foregroundColor(.white)
+                .frame(maxWidth: .infinity, maxHeight: .infinity) 
+
         }
     }
 }
