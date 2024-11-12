@@ -36,7 +36,7 @@ struct ContentView: View {
                 
                 ProgressCircle(progress: calories / caloryGoal, color: .pink)
                     .frame(width: 150, height: 150)
-                    .padding(.top, 10)
+                    .padding(.vertical, 20)
                 
                 HStack {
                     Image(systemName: "figure.walk")
@@ -120,7 +120,7 @@ struct ProgressCircle: View {
                 .font(.title2)
                 .fontWeight(.bold)
                 .foregroundColor(.white)
-                .frame(maxWidth: .infinity, maxHeight: .infinity) 
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
 
         }
     }

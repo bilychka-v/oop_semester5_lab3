@@ -8,7 +8,7 @@ class ActiveService: ObservableObject {
     @Published var distance: Double? = 0.0
     @Published var burnedCalories: Double? = 0.0
     
-//    private let userWeight: Double = 70.0 // Вага користувача у кг
+//    private let userWeight: Double = 70.0 
     
     func startMonitoring() {
         guard CMPedometer.isStepCountingAvailable() else {
