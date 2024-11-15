@@ -16,3 +16,4 @@ DerivedData/
 # CocoaPods
 Pods/
 *.xcodeproj
+*.xcassets
