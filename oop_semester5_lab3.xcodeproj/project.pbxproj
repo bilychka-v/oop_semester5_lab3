@@ -12,6 +12,7 @@
 		A507C8762CE039630017C04C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A507C8752CE039630017C04C /* Assets.xcassets */; };
 		A507C8792CE039630017C04C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A507C8782CE039630017C04C /* Preview Assets.xcassets */; };
 		A5B0A9792CE12F2100DC0E32 /* ActiveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B0A9782CE12F2100DC0E32 /* ActiveService.swift */; };
+		A5CA79702CE73997008A06BA /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A5CA796F2CE73997008A06BA /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		A507C8752CE039630017C04C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A507C8782CE039630017C04C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A5B0A9782CE12F2100DC0E32 /* ActiveService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveService.swift; sourceTree = "<group>"; };
+		A5CA796F2CE73997008A06BA /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +39,7 @@
 		A507C8652CE039610017C04C = {
 			isa = PBXGroup;
 			children = (
+				A5CA796F2CE73997008A06BA /* .gitignore */,
 				A507C8702CE039610017C04C /* oop_semester5_lab3 */,
 				A507C86F2CE039610017C04C /* Products */,
 			);
@@ -129,6 +132,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A507C8792CE039630017C04C /* Preview Assets.xcassets in Resources */,
+				A5CA79702CE73997008A06BA /* .gitignore in Resources */,
 				A507C8762CE039630017C04C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
