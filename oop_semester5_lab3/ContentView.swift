@@ -1,4 +1,5 @@
 import SwiftUI
+import os
 
 struct ContentView: View {
     @StateObject private var activeService = ActiveService()
@@ -8,6 +9,7 @@ struct ContentView: View {
     @State private var calories: Double = 0.0
     
     private let caloryGoal: Double = 500.0
+    private let logger = Logger(subsystem: "com.example.HealthTracker", category: "ContentView")
     
     var body: some View {
         ZStack {
@@ -77,26 +79,30 @@ struct ContentView: View {
         .onDisappear(perform: stopMonitoring)
         .onReceive(activeService.$numberOfSteps) { steps in
             self.steps = steps ?? 0
-            print("Steps updated: \(steps ?? 0)")
+            logger.info("Steps updated: \(self.steps)")
         }
         .onReceive(activeService.$distance) { distance in
             self.distance = (distance ?? 0) / 1000.0
-            print("Distance updated: \(distance ?? 0.0)")
+            logger.info("Distance updated: \(self.distance) km")
         }
         .onReceive(activeService.$burnedCalories) { calories in
             self.calories = calories ?? 0.0
-            print("Calories updated: \(calories ?? 0.0)")
+            logger.info("Calories updated: \(self.calories) kcal")
         }
     }
     
     private func startMonitoring() {
         let authStatus = activeService.checkAuthStatus()
         if authStatus {
+            logger.info("Authorization successful. Starting monitoring.")
             activeService.startMonitoring()
+        } else {
+            logger.error("Authorization failed. Monitoring not started.")
         }
     }
     
     private func stopMonitoring() {
+        logger.info("Stopping monitoring.")
         activeService.stopMonitoring()
     }
 }
@@ -121,7 +127,6 @@ struct ProgressCircle: View {
                 .fontWeight(.bold)
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-
         }
     }
 }
