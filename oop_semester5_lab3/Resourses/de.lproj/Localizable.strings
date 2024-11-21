@@ -1,0 +1,14 @@
+"Health Tracker" = "Gesundheits-Tracker";
+"Calories:" = "Kalorien:";
+"Steps:" = "Schritte:";
+"Distance:" = "Entfernung:";
+"%d kcal" = "%d kcal";
+"%.2f km" = "%.2f km";
+"Steps updated: %d" = "Schritte aktualisiert: %d";
+"Distance updated: %.2f km" = "Entfernung aktualisiert: %.2f km";
+"Calories updated: %.2f kcal" = "Kalorien aktualisiert: %.2f kcal";
+"Authorization successful. Starting monitoring." = "Autorisierung erfolgreich. Überwachung gestartet.";
+"Authorization failed. Monitoring not started." = "Autorisierung fehlgeschlagen. Überwachung nicht gestartet.";
+"Stopping monitoring." = "Überwachung wird gestoppt.";
+
+

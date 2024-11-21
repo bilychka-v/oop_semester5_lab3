@@ -7,16 +7,32 @@ struct ContentView: View {
     @State private var steps: Int = 0
     @State private var distance: Double = 0.0
     @State private var calories: Double = 0.0
+    @State private var selectedLanguage: String = Locale.current.language.languageCode?.identifier ?? "en" // Вибрана мова
     
     private let caloryGoal: Double = 500.0
     private let logger = Logger(subsystem: "com.example.HealthTracker", category: "ContentView")
+    
     
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
             
             VStack(spacing: 20) {
-                Text("Health Tracker")
+                // Вибір мови
+                Picker(localizedText("Language"), selection: $selectedLanguage) {
+                    Text(localizedText("English")).tag("en")
+                    Text(localizedText("Français")).tag("fr")
+                    Text(localizedText("Deutsch")).tag("de")
+                    Text(localizedText("Українська")).tag("uk")
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .onChange(of: selectedLanguage) {
+                    setLanguage(selectedLanguage)
+                }
+
+                .padding()
+                
+                Text(localizedText("Health Tracker"))
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
@@ -24,11 +40,11 @@ struct ContentView: View {
                 HStack {
                     Image(systemName: "flame.fill")
                         .foregroundColor(.pink)
-                    Text("Calories:")
+                    Text(localizedText("Calories:"))
                         .font(.title2)
                         .foregroundColor(.white)
                     Spacer()
-                    Text("\(Int(calories)) kcal")
+                    Text(String(format: localizedText("%d kcal"), Int(calories)))
                         .font(.title2)
                         .foregroundColor(.pink)
                 }
@@ -43,7 +59,7 @@ struct ContentView: View {
                 HStack {
                     Image(systemName: "figure.walk")
                         .foregroundColor(.blue)
-                    Text("Steps:")
+                    Text(localizedText("Steps:"))
                         .font(.title2)
                         .foregroundColor(.white)
                     Spacer()
@@ -58,11 +74,11 @@ struct ContentView: View {
                 HStack {
                     Image(systemName: "location")
                         .foregroundColor(.green)
-                    Text("Distance:")
+                    Text(localizedText("Distance:"))
                         .font(.title2)
                         .foregroundColor(.white)
                     Spacer()
-                    Text(String(format: "%.2f km", distance))
+                    Text(String(format: localizedText("%.2f km"), distance))
                         .font(.title2)
                         .foregroundColor(.green)
                 }
@@ -94,18 +110,33 @@ struct ContentView: View {
     private func startMonitoring() {
         let authStatus = activeService.checkAuthStatus()
         if authStatus {
-            logger.info("Authorization successful. Starting monitoring.")
+            logger.info("\(localizedText("Authorization successful. Starting monitoring."))")
+
             activeService.startMonitoring()
         } else {
-            logger.error("Authorization failed. Monitoring not started.")
+            logger.error("\(localizedText("Authorization failed. Monitoring not started."))")
         }
     }
     
     private func stopMonitoring() {
-        logger.info("Stopping monitoring.")
+        logger.info("\(localizedText("Stopping monitoring."))")
         activeService.stopMonitoring()
     }
+    
+    private func setLanguage(_ language: String) {
+        UserDefaults.standard.set([language], forKey: "AppleLanguages")
+        UserDefaults.standard.synchronize()
+        logger.info("\(localizedText("Language changed to: \(language)"))")
+        exit(0) // Перезапустити додаток для застосування мови
+    }
+    
+    private func localizedText(_ key: String) -> String {
+        let localized = NSLocalizedString(key, comment: "")
+        logger.info("Localized text for '\(key)': \(localized)")
+        return localized
+    }
 }
+
 
 struct ProgressCircle: View {
     var progress: Double

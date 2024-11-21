@@ -1,0 +1,13 @@
+"Health Tracker" = "Трекер здоров'я";
+"Calories:" = "Калорії:";
+"Steps:" = "Кроки:";
+"Distance:" = "Дистанція:";
+"%d kcal" = "%d ккал";
+"%.2f km" = "%.2f км";
+"Steps updated: %d" = "Кроки оновлено: %d";
+"Distance updated: %.2f km" = "Дистанцію оновлено: %.2f км";
+"Calories updated: %.2f kcal" = "Калорії оновлено: %.2f ккал";
+"Authorization successful. Starting monitoring." = "Авторизація успішна. Починається відстеження.";
+"Authorization failed. Monitoring not started." = "Авторизація не вдалася. Відстеження не розпочато.";
+"Stopping monitoring." = "Відстеження припинено.";
+
